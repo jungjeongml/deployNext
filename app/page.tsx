@@ -1,8 +1,10 @@
 import Image from "next/image"
+import ConnectWallet from "./ui/connectWallet"
 
 export default function Home() {
   return (
     <>
+      <ConnectWallet />
       <h1 style={{ color: "green" }}>React true</h1>
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
