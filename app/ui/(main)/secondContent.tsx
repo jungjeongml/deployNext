@@ -1,14 +1,16 @@
-import ConnectButton from "@/app/components/button/routerButton"
+import { useRouter } from "next/navigation"
 import styles from "./secondContent.module.css"
+import RouterButton from "@/app/components/button/routerButton"
 
 const SecondContent = () => {
+  const router = useRouter()
   return (
     <div className={styles.container}>
       <div className={styles.text}>
         <h2 className={styles.subject}>
           Join AirDrop and enjoy greater benefits
         </h2>
-        <ConnectButton
+        <RouterButton
           width=""
           height="48px"
           color="#1FC7D4"
@@ -21,9 +23,10 @@ const SecondContent = () => {
           fontWeight="600"
           cursor="pointer"
           letterSpacing="0.03rem"
+          onClick={() => router.push("/drops")}
         >
           Join Drops
-        </ConnectButton>
+        </RouterButton>
       </div>
     </div>
   )
