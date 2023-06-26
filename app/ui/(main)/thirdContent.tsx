@@ -1,7 +1,12 @@
+"use client"
+
 import ConnectButton from "@/app/components/button/routerButton"
 import styles from "./thirdContent.module.css"
+import RouterButton from "@/app/components/button/routerButton"
+import { useRouter } from "next/navigation"
 
 const ThirdContent = () => {
+  const router = useRouter()
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -25,10 +30,11 @@ const ThirdContent = () => {
               fontWeight="600"
               cursor="pointer"
               letterSpacing="0.03rem"
+              onClick={() => {}}
             >
               Connect Wallet
             </ConnectButton>
-            <ConnectButton
+            <RouterButton
               width=""
               height="48px"
               color="#1FC7D4"
@@ -41,9 +47,10 @@ const ThirdContent = () => {
               fontWeight="600"
               cursor="pointer"
               letterSpacing="0.03rem"
+              onClick={() => router.push("/swap")}
             >
               Trade Now
-            </ConnectButton>
+            </RouterButton>
           </div>
         </div>
       </div>

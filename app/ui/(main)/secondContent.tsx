@@ -1,3 +1,5 @@
+"use client"
+
 import { useRouter } from "next/navigation"
 import styles from "./secondContent.module.css"
 import RouterButton from "@/app/components/button/routerButton"
