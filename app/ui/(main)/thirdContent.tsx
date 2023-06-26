@@ -1,3 +1,5 @@
+"use client"
+
 import ConnectButton from "@/app/components/button/routerButton"
 import styles from "./thirdContent.module.css"
 import RouterButton from "@/app/components/button/routerButton"
