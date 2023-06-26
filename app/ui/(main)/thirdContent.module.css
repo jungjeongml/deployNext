@@ -1,0 +1,40 @@
+.container {
+  max-width: 100%;
+  height: 100vh;
+  background-image: url("/defimain1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.text {
+  width: 30rem;
+  position: absolute;
+  right: 0;
+  transform: translateY(150%);
+}
+
+.subject {
+  font-size: 50px;
+  color: #000;
+}
+
+
+.text p {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: #280D5F;
+}
+
+.buttonWrap {
+  display: flex;
+  gap: 10px;
+}
