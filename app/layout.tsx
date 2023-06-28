@@ -1,11 +1,13 @@
 import "./globals.css"
-import { Inter } from "next/font/google"
+import { Inter, Kanit } from "next/font/google"
 import Navbar from "./ui/(main)/navbar"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import { config } from "@fortawesome/fontawesome-svg-core"
+import Providers from "@/redux/provider"
 config.autoAddCss = false
 
-const inter = Inter({ subsets: ["latin"] })
+// const inter = Inter({ subsets: ["latin"] })
+const kanit = Kanit({ subsets: ["latin"], weight: "600" })
 
 export const metadata = {
   title: "Create Next App",
@@ -19,9 +21,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Navbar />
-        {children}
+      <body className={kanit.className}>
+        <div className="background">
+          <Providers>
+            <Navbar />
+            {children}
+          </Providers>
+        </div>
       </body>
     </html>
   )
