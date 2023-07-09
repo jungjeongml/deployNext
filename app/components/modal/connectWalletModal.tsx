@@ -3,15 +3,10 @@
 import Link from "next/link"
 import styles from "./connectWalletModal.module.css"
 import { useCallback, useEffect, useRef } from "react"
-import { connectMetamask } from "@/app/hooks/metamask"
-import { connect } from "@/app/hooks/trust"
-
-// interface Wallet {
-//   click: () => void
-//   image: string
-//   name: string
-//   line: string
-// }
+import { connectMetamask } from "@/app/hooks/metamaskre"
+import { connect } from "@/app/hooks/trustre"
+import { useDispatch } from "react-redux"
+import { setAccount } from "@/redux/slice/accountSlice"
 
 const walletList = [
   {
@@ -64,55 +59,7 @@ const walletList = [
 ]
 
 const ConnectWalletModal = ({ setConnectModal }: { setConnectModal: any }) => {
-  const walletList = [
-    {
-      click: () => {
-        console.log("1")
-        connectMetamask()
-      },
-      image: "https://assets.pancakeswap.finance/web/wallets/metamask.png",
-      name: "Metamask",
-      line: "none",
-    },
-    {
-      click: () => {
-        connect()
-      },
-      image: "https://assets.pancakeswap.finance/web/wallets/trust.png",
-      name: "Trust Wallet",
-      line: "none",
-    },
-    {
-      click: () => {},
-      image: "https://assets.pancakeswap.finance/web/wallets/walletconnect.png",
-      name: "WalletConnect",
-      line: "none",
-    },
-    {
-      click: () => {},
-      image: "https://assets.pancakeswap.finance/web/wallets/coinbase.png",
-      name: "Coinbase Wallet",
-      line: "line-through",
-    },
-    {
-      click: () => {},
-      image: "https://assets.pancakeswap.finance/web/wallets/opera.png",
-      name: "Opera Wallet",
-      line: "line-through",
-    },
-    {
-      click: () => {},
-      image: "https://assets.pancakeswap.finance/web/wallets/brave.png",
-      name: "Brave Wallet",
-      line: "line-through",
-    },
-    {
-      click: () => {},
-      image: "https://assets.pancakeswap.finance/web/wallets/binance.png",
-      name: "Binance Wallet",
-      line: "line-through",
-    },
-  ]
+  const dispatch = useDispatch()
 
   const wrapperRef = useRef<HTMLDivElement>(null)
 
@@ -133,11 +80,31 @@ const ConnectWalletModal = ({ setConnectModal }: { setConnectModal: any }) => {
     }
   })
 
-  console.log(wrapperRef.current)
-  const selectWallet = () => {}
+  const selectWallet = (index: number) => {
+    switch (index) {
+      case (index = 0):
+        if (window.ethereum) {
+          console.log("11")
+          console.log(window.ethereum)
+          const metaConnect = async () => {
+            const account = await window.ethereum.request({
+              method: "eth_requestAccounts",
+            })
+            console.log("account:", account)
+            setAccount(account)
+          }
+          metaConnect()
+          console.log("22")
+        }
+        break
+      case (index = 1):
+        connect()
+        break
+    }
+  }
 
   return (
-    <div className={styles.real}>
+    <div className={styles.outer}>
       <div className={styles.container} ref={wrapperRef}>
         <div className={styles.selectWallet}>
           <div className={styles.textWrapper}>
@@ -152,7 +119,7 @@ const ConnectWalletModal = ({ setConnectModal }: { setConnectModal: any }) => {
                 <div
                   className={styles.buttonWrapper}
                   onClick={() => {
-                    wallet.click()
+                    selectWallet(i)
                   }}
                   key={i}
                   style={{ textDecoration: wallet.line }}

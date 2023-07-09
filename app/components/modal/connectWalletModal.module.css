@@ -1,6 +1,6 @@
-.real {
+.outer {
   top: 0;
-  bottom:0;
+  bottom: 0;
   right: 0;
   left: 0;
   position: fixed;
@@ -10,11 +10,11 @@
   background-color: rgb(0, 0, 0, 0.6);
 }
 
-.container{
+.container {
   position: absolute;
   z-index: 999;
   top: 50%;
-  left:50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   width: 792px;
   height: 490px;
@@ -24,33 +24,33 @@
   animation: modal-show 1s;
 }
 
-@keyframes modal-show{
+@keyframes modal-show {
   from {
     opacity: 0;
     margin-top: -50px;
   }
-  to{
+  to {
     opacity: 1;
     margin-top: 0;
   }
 }
 
-.selectWallet{
+.selectWallet {
   padding: 32px 0px;
   width: 408px;
   background: #fff;
-  border-radius: 24px 0px 0px 24px
+  border-radius: 24px 0px 0px 24px;
 }
 
-.textWrapper{
+.textWrapper {
   padding: 0px 32px;
 }
 
-.subject{
+.subject {
   font-size: 20px;
 }
 
-.textInfo{
+.textInfo {
   padding-top: 24px;
   padding-bottom: 32px;
   line-height: 1.5;
@@ -59,17 +59,15 @@
   font-size: 14px;
 }
 
-.wallets{
-  
+.wallets {
   padding: 0px 16px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   row-gap: 24px;
   column-gap: 16px;
-  
 }
 
-.buttonWrapper{
+.buttonWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -77,7 +75,7 @@
   cursor: pointer;
 }
 
-.walletImg{
+.walletImg {
   width: 50px;
   height: 50px;
 }
@@ -96,7 +94,7 @@
   justify-content: center;
 }
 
-.noWalletWrapper{
+.noWalletWrapper {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -107,12 +105,12 @@
   color: #7645d9;
 }
 
-.learnImg{
+.learnImg {
   width: 198px;
   height: 178px;
 }
 
-.link{
+.link {
   font-size: 16px;
   font-weight: 600;
   border: 0px;

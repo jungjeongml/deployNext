@@ -1,13 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+
+
+type Account = string[]
+
+const initialState: Account = []
 
 const accountSlice = createSlice({
   name: 'account',
-  initialState: null,
+  initialState,
   reducers: {
-    setAccount: (state, action) => action.payload,
+    setAccount: (state, action:PayloadAction<Account>) => state =  action.payload,
   },
 });
 
 export const { setAccount } = accountSlice.actions;
 
-export default accountSlice.reducer;
+export default accountSlice;
