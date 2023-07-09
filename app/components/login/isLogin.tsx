@@ -7,9 +7,11 @@ import { RootState } from "@/redux/store"
 
 const IsLogin = () => {
   const router = useRouter()
-  const account = useSelector((state: RootState) => state.account)
-  console.log("account:", account[0])
-  const shortAccount = `${account[0].slice(0, 6)}...${account[0].slice(-4)}`
+  const account = useSelector((state: RootState) => state.wallet)
+  console.log("account:", account)
+  const shortAccount = `${account.signer.slice(0, 6)}...${account.signer.slice(
+    -4
+  )}`
 
   return (
     <div className={styles.accountContent}>

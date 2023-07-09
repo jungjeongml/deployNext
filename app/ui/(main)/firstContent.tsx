@@ -15,16 +15,16 @@ import FirstButtonWrapper from "./content/firstContentBtnWrapper"
 
 const FirstContent = () => {
   const [accounts, setAccounts] = useState<string[]>([])
-  const account = useSelector((state: RootState) => state.account)
+  const account = useSelector((state: RootState) => state.wallet)
+  console.log("account:::", account.signer)
 
-  useEffect(() => {
-    setAccounts(account)
-  }, [account])
+  // useEffect(() => {
+  //   setAccounts(account)
+  // }, [account])
 
   return (
     <Container>
-      {/* <IsLogin /> */}
-      {/* {accounts.length > 0 && <IsLogin />} */}
+      {account.signer !== "none" && <IsLogin />}
       <Wrapper>
         <Item>
           <ItemTxT fontSize="64px" color="#7645d9">
