@@ -1,19 +1,26 @@
 "use client"
 
-import ConnectButton from "@/app/components/button/connectButton"
 import styles from "./navbar.module.css"
 import Link from "next/link"
 import { Rubik_Gemstones } from "next/font/google"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import NavModal from "@/app/components/modal/navModal"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCookie } from "@fortawesome/free-solid-svg-icons"
-import Web3Modal from "web3modal"
-import { ethers } from "ethers"
-import { getTrustWalletInjectedProvider } from "@/app/hooks/trust"
-import { connectMetamask } from "@/app/hooks/metamask"
-import detectEthereumProvider from "@metamask/detect-provider"
+import { getTrustWalletInjectedProvider } from "@/app/utiles/trust"
 import ConnectWalletModal from "@/app/components/modal/connectWalletModal"
+import { Button } from "@/app/components/button/button"
+import { Custom2 } from "@/app/components/modal2/styled/custom2"
+import { ConnectWallet } from "../../contents/connectwalllet/connetwallet"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "@/redux/store"
+import { ethers } from "ethers"
+import { setProvider } from "@/redux/slice/providerSlice"
+
+interface WalletState {
+  wallet: string
+  signer: string
+}
 
 const rubikGemstones = Rubik_Gemstones({
   weight: "400",
@@ -21,6 +28,9 @@ const rubikGemstones = Rubik_Gemstones({
 })
 
 const Navbar = () => {
+  const dispatch = useDispatch()
+  const wallet = useSelector<RootState, WalletState>((state) => state.wallet)
+  const [modalIsOpen, setModalIsOpen] = useState(false)
   const [poolModal, setPoolModal] = useState(false)
   const [govModal, setGovModal] = useState(false)
   const [hasProvider, setHasProvider] = useState<boolean | null>(null)
@@ -47,21 +57,28 @@ const Navbar = () => {
     setConnectModal(true)
   }
 
-  const connect = async () => {
-    const injectedProvider = await getTrustWalletInjectedProvider()
-    console.log("injectedProvider:", injectedProvider.request)
-    try {
-      const account = await injectedProvider.request({
-        method: "eth_requestAccounts",
-      })
-      console.log(account)
-    } catch (e: any) {
-      console.log(e.message)
-      if (e.code === 4001) {
-        console.error("User denied connection.")
-      }
+  const setProviderState = async (wallet: WalletState) => {
+    let provider
+    switch (wallet.wallet) {
+      case "MetaMask":
+        provider = new ethers.providers.Web3Provider(window.ethereum)
+        dispatch(setProvider(provider))
+        break
+      case "Trust":
+        const injectedProvider = await getTrustWalletInjectedProvider()
+        provider = new ethers.providers.Web3Provider(injectedProvider)
+        dispatch(setProvider(provider))
+        break
+      case "WalletConnect":
+        break
+      case "none":
+        dispatch(setProvider("none"))
+        break
     }
   }
+  useEffect(() => {
+    setProviderState(wallet)
+  }, [])
 
   return (
     <div>
@@ -73,13 +90,13 @@ const Navbar = () => {
           </div>
         </Link>
         <div className={styles.menu}>
-          <div className={styles.wrapper}>
-            <div className={styles.item}>
-              <Link href={"/swap"}>
+          <Link href={"/swap"}>
+            <div className={styles.wrapper}>
+              <div className={styles.item}>
                 <span>Swap</span>
-              </Link>
+              </div>
             </div>
-          </div>
+          </Link>
           <div
             className={styles.wrapper}
             onMouseEnter={poolMouseEnter}
@@ -112,32 +129,31 @@ const Navbar = () => {
               )}
             </div>
           </div>
-          <div className={styles.wrapper}>
-            <div className={styles.item}>Drops</div>
-          </div>
-          <div className={styles.wrapper}>
-            <div className={styles.item}>Dashboard</div>
-          </div>
+          <Link href={"/drops"}>
+            <div className={styles.wrapper}>
+              <div className={styles.item}>Drops</div>
+            </div>
+          </Link>
+          <Link href={"/dashboard"}>
+            <div className={styles.wrapper}>
+              <div className={styles.item}>Dashboard</div>
+            </div>
+          </Link>
         </div>
         <div>togglebutton</div>
-        <ConnectButton
-          width=""
-          height="32px"
-          color="#fff"
-          padding="0px 16px"
-          background="#1FC7D4"
-          border="none"
-          borderRadius="16px"
-          fontSize="16px"
-          fontFamily=""
-          fontWeight="600"
-          cursor="pointer"
-          letterSpacing="0.03rem"
-          onClick={selectWallet}
-          web3Provider={""}
-        >
-          Connect Wallet
-        </ConnectButton>
+        <Button
+          width={12}
+          height={2}
+          onclick={() => setModalIsOpen(true)}
+          text={"Connect Wallet"}
+        ></Button>
+        <Custom2
+          isOpen={modalIsOpen}
+          onClose={() => setModalIsOpen(false)}
+          width={793}
+          height={491}
+          content={<ConnectWallet />}
+        />
       </div>
       {connectModal && <ConnectWalletModal setConnectModal={setConnectModal} />}
     </div>

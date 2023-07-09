@@ -1,4 +1,5 @@
-import styles from "./footer.module.css"
+"use client"
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faGithub,
@@ -7,28 +8,45 @@ import {
   faInstagram,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons"
+import { Container, Developer, Logos, TeamName } from "./styled/footer.styled"
+
+const icons = [
+  {
+    name: faGithub,
+  },
+  {
+    name: faTwitter,
+  },
+  {
+    name: faDiscord,
+  },
+  {
+    name: faInstagram,
+  },
+  {
+    name: faYoutube,
+  },
+]
 
 const Footer = () => {
   return (
-    <div className={styles.container}>
-      <div className={styles.team}>
+    <Container>
+      <TeamName>
         <strong>team DDD </strong>
         <span>ⓒ Don't defy defi</span>
-      </div>
-      <div className={styles.developer}>
+      </TeamName>
+      <Developer>
         <strong>Developer</strong>
         <span>박경철</span>
         <span>장경호</span>
         <span>이정민</span>
-      </div>
-      <div className={styles.logo}>
-        <FontAwesomeIcon icon={faGithub} style={{ color: "#b8add2" }} />
-        <FontAwesomeIcon icon={faDiscord} style={{ color: "#b8add2" }} />
-        <FontAwesomeIcon icon={faTwitter} style={{ color: "#b8add2" }} />
-        <FontAwesomeIcon icon={faInstagram} style={{ color: "#b8add2" }} />
-        <FontAwesomeIcon icon={faYoutube} style={{ color: "#b8add2" }} />
-      </div>
-    </div>
+      </Developer>
+      <Logos>
+        {icons.map((icon) => (
+          <FontAwesomeIcon icon={icon.name} style={{ color: "#b8add2" }} />
+        ))}
+      </Logos>
+    </Container>
   )
 }
 
