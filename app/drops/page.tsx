@@ -1,3 +1,5 @@
+"use client"
+
 import DropBody from "./content/body"
 import Header from "./content/header"
 

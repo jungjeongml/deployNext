@@ -12,8 +12,7 @@ export const connectToMetaMask = async () => {
       const signer = provider.getSigner()
 
       const address = await signer.getAddress()
-      console.log(signer)
-      return { wallet: "MetaMask", address, provider }
+      return { wallet: "MetaMask", address, provider, signer }
     } catch (error) {
       console.error("Error connecting to MetaMask:", error)
     }

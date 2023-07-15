@@ -6,12 +6,12 @@ import BoundaryLine from "./ui/(main)/boundaryLine"
 
 const Home = () => {
   return (
-    <>
+    <div>
       <FirstContent />
       <BoundaryLine />
       <SecondContent />
       <Footer />
-    </>
+    </div>
   )
 }
 

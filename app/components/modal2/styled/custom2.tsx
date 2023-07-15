@@ -43,13 +43,7 @@ export const Custom2 = (props: ICustomModal) => {
         },
       }}
     >
-      <Button
-        width={2}
-        height={2}
-        onclick={onClose}
-        text={"X"}
-        left={left}
-      ></Button>
+      <Button width={2} height={2} onclick={onClose} text={"X"} left={left}></Button>
       {content}
     </Modal>
   )

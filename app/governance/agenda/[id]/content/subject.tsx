@@ -8,12 +8,12 @@ import {
   MyAmountInfo,
 } from "../styled/page.styled"
 
-const Subject = () => {
+const Subject = ({ subject }: { subject: string }) => {
   return (
     <>
       <SubjectWrapper>
         <SubjectVoting>
-          <Title>GXA Token level (B) maintain</Title>
+          <Title>{subject}</Title>
           <Voting>Voting deadline | 2023-07-01 ~ 2023-07-02</Voting>
         </SubjectVoting>
         <MyAmountBox>

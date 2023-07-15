@@ -16,7 +16,13 @@ interface DataInfo {
   color: string
 }
 
-const SelectBox = ({ data }: { data: DataInfo }) => {
+const SelectBox = ({
+  data,
+  onClick,
+}: {
+  data: DataInfo
+  onClick: () => void
+}) => {
   return (
     <YesNoBox>
       <YesOrNo>{data.title}</YesOrNo>

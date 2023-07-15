@@ -39,6 +39,7 @@ export const LeftContent: React.FC<ILeftContent> = ({ data }) => {
         image={v.image}
         name={v.name}
         onclick={v.onclick}
+        isModal={v.isModal}
       ></WalletIcon>
     )
   })

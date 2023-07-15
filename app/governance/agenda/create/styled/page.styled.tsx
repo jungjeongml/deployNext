@@ -1,6 +1,6 @@
 "use client"
 
-import { styled } from "styled-components"
+import { styled, keyframes } from "styled-components"
 
 export const Container = styled.div`
   padding: 30px 50px;
@@ -79,11 +79,28 @@ export const Choice = styled.div`
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  position: relative;
   color: #280d5f;
 `
 
-export const ChoiceText = styled.h4``
+export const ChoiceText = styled.h4`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
+export const ChoiceList = styled.ul`
+  margin-top: 10px;
+`
+
+export const ChoiceItem = styled.li`
+  color: #280d5f;
+  padding: 20px;
+  cursor: pointer;
+  &:hover {
+    background: #b4c3ff;
+  }
+`
 
 export const ModalWrapper = styled.div`
   width: 105%;
@@ -204,6 +221,11 @@ export const ContentBox = styled.textarea`
   height: 100%;
   border: none;
   outline: none;
+  resize: none;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  &::placeholder {
+    color: #999;
+  }
   &:focus {
     outline: none;
   }

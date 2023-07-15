@@ -3,7 +3,7 @@
 import { useSelector } from "react-redux"
 import { RootState } from "@/redux/store"
 import IsLogin from "@/app/components/login/isLogin"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import {
   Container,
   Item,
@@ -17,10 +17,6 @@ const FirstContent = () => {
   const [accounts, setAccounts] = useState<string[]>([])
   const account = useSelector((state: RootState) => state.wallet)
   console.log("account:::", account.signer)
-
-  // useEffect(() => {
-  //   setAccounts(account)
-  // }, [account])
 
   return (
     <Container>

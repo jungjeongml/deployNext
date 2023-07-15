@@ -4,6 +4,10 @@ interface Item {
   color: string
 }
 
+interface IJoin {
+  color: number
+}
+
 export const FirstLayout = styled.div`
   padding: 32px 0px;
   background: linear-gradient(139.73deg, #e5fdff, #f3efff);
@@ -73,6 +77,9 @@ export const Item = styled.div`
   border-bottom: 1px solid #e7e3eb;
   cursor: pointer;
   justify-content: space-between;
+  &:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
 `
 
 export const Index = styled.div``
@@ -84,7 +91,7 @@ export const ItemSubject = styled.div`
 
 export const IsVoting = styled.div<Item>`
   width: 100px;
-  color: ${({ color }) => color};
+  color: ${({ color }) => (color === "progress" ? "#1fc7d4" : "red")};
 `
 
 export const Period = styled.div`
@@ -92,7 +99,7 @@ export const Period = styled.div`
   color: #7a6eaa;
 `
 
-export const IsChecked = styled.div<Item>`
+export const IsChecked = styled.div<IJoin>`
   width: 60px;
-  color: ${({ color }) => color};
+  color: ${({ color }) => (color === 0 ? "#ff9632" : "#1fc7d4")};
 `

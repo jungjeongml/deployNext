@@ -8,6 +8,8 @@ export const InputST = styled.input`
   padding: 0.5rem 0.5rem 0 0.5rem;
   background-color: #eeeaf4;
   box-sizing: border-box;
+  font-size: 28px;
+  font-weight: bold;
 
   &:focus {
     outline: none;

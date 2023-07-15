@@ -13,7 +13,7 @@ import UsersIcon from "./content/(icon)/usersIcon"
 import TradesIcon from "./content/(icon)/tradesIcon"
 import StakedIcon from "./content/(icon)/stakedIcon"
 
-const data = [
+const CardList = [
   {
     name: "users",
     value: "1.5 million",
@@ -58,8 +58,8 @@ const SecondContent = () => {
           <div>Will you join them?</div>
         </Content>
         <BoxWrapper>
-          {data.map((item) => (
-            <CardBox data={item} />
+          {CardList.map((item, i) => (
+            <CardBox key={i} contents={item} />
           ))}
         </BoxWrapper>
       </LayoutWrapper>
