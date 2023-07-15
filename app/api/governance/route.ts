@@ -10,8 +10,11 @@ export const corsHeaders = {
 
 let queryString;
 
+export async function OPTIONS(req: NextRequest) {
+  return NextResponse.json({}, { headers: corsHeaders });
+}
 
-const queryPromise = (queryString: string, req:NextRequest, res:NextResponse) => {
+const queryPromise = (queryString: string) => {
 	return new Promise((resolve, reject) => {
 		db.query(queryString, (error: any, results: any) => {  
 			if (error) {  
@@ -25,7 +28,7 @@ const queryPromise = (queryString: string, req:NextRequest, res:NextResponse) =>
 export const GET = async (req:NextRequest, res:NextResponse) => {
   try{
     queryString = `SELECT * FROM governance ORDER BY id DESC`  
-    const rows = await queryPromise(queryString, req, res)
+    const rows = await queryPromise(queryString)
     return NextResponse.json(rows, {headers:corsHeaders})
   } catch(e){
     console.error(e)

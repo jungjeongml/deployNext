@@ -10,6 +10,10 @@ export const corsHeaders = {
 
 let queryString;
 
+export async function OPTIONS(req: NextRequest) {
+  return NextResponse.json({}, { headers: corsHeaders });
+}
+
 const queryPromise = (queryString: string) => {
 	return new Promise((resolve, reject) => {  
 		db.query(queryString, (error: any, results: any) => {  
