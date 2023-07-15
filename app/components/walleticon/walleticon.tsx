@@ -1,13 +1,14 @@
 import { styled } from "styled-components"
 import { Span } from "../span/span"
 import { useDispatch } from "react-redux"
-import { setWallet, setSigner } from "@/redux/slice/walletSlice"
-import { setProvider } from "@/redux/slice/providerSlice"
+import { setWallet, setSigner } from "@/redux/reducer/wallet"
+import { setProvider } from "@/redux/reducer/provider"
 
 export interface IWalletIcon {
   image: string
   name: string
   onclick: any
+  isModal: (value: boolean) => void
 }
 
 const WalletIconST = styled.img`
@@ -23,7 +24,12 @@ const WapperST = styled.div`
   cursor: pointer;
 `
 
-export const WalletIcon: React.FC<IWalletIcon> = ({ image, name, onclick }) => {
+export const WalletIcon: React.FC<IWalletIcon> = ({
+  image,
+  name,
+  onclick,
+  isModal,
+}) => {
   const dispatch = useDispatch()
 
   const clickHandler = async () => {
@@ -31,6 +37,7 @@ export const WalletIcon: React.FC<IWalletIcon> = ({ image, name, onclick }) => {
     dispatch(setWallet(wallet))
     dispatch(setSigner(address))
     dispatch(setProvider(provider))
+    isModal(false)
     console.log(wallet, address, provider)
   }
 

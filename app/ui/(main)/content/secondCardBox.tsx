@@ -7,7 +7,7 @@ import {
   CardWrapper,
 } from "../styled/secondContent.styled"
 
-interface Cdata {
+interface CardContents {
   name: string
   value: string
   during: string
@@ -16,8 +16,12 @@ interface Cdata {
   icon: () => JSX.Element
 }
 
-const CardBox = ({ data }: { data: Cdata }) => {
-  const Icon = data.icon
+interface CardContentProps {
+  contents: CardContents
+}
+
+const CardBox = ({ contents }: CardContentProps) => {
+  const Icon = contents.icon
   return (
     <CardLayoutWrapper>
       <CardWrapper>
@@ -26,9 +30,9 @@ const CardBox = ({ data }: { data: Cdata }) => {
             <Icon />
           </CardIconWrapper>
           <CardTxTWrapper>
-            <CardTitle color={data.valueColor}>{data.value}</CardTitle>
-            <CardTitle color={data.nameColor}>{data.name}</CardTitle>
-            <div>{data.during}</div>
+            <CardTitle color={contents.valueColor}>{contents.value}</CardTitle>
+            <CardTitle color={contents.nameColor}>{contents.name}</CardTitle>
+            <div>{contents.during}</div>
           </CardTxTWrapper>
         </CardSecondWrapper>
       </CardWrapper>

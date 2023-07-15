@@ -98,11 +98,6 @@
           "internalType": "address",
           "name": "_contractAddress",
           "type": "address"
-        },
-        {
-          "internalType": "string",
-          "name": "_tokenName",
-          "type": "string"
         }
       ],
       "name": "makeLpPool",

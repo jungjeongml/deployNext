@@ -33,7 +33,7 @@ const Footer = () => {
     <Container>
       <TeamName>
         <strong>team DDD </strong>
-        <span>ⓒ Don't defy defi</span>
+        <span>ⓒ Don't Defy Defi</span>
       </TeamName>
       <Developer>
         <strong>Developer</strong>

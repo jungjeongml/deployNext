@@ -1,6 +1,5 @@
 "use client"
 
-import styles from "./navbar.module.css"
 import Link from "next/link"
 import { Rubik_Gemstones } from "next/font/google"
 import { useEffect, useState } from "react"
@@ -15,7 +14,10 @@ import { ConnectWallet } from "../../contents/connectwalllet/connetwallet"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/redux/store"
 import { ethers } from "ethers"
-import { setProvider } from "@/redux/slice/providerSlice"
+import { setProvider } from "@/redux/reducer/provider"
+import { Container, Logo } from "./styled/navbar.styled"
+import NavbarMenu from "./content/navbarMenu"
+import SuccessButton from "./content/successButton"
 
 interface WalletState {
   wallet: string
@@ -30,32 +32,10 @@ const rubikGemstones = Rubik_Gemstones({
 const Navbar = () => {
   const dispatch = useDispatch()
   const wallet = useSelector<RootState, WalletState>((state) => state.wallet)
+  const account = wallet.signer
   const [modalIsOpen, setModalIsOpen] = useState(false)
-  const [poolModal, setPoolModal] = useState(false)
-  const [govModal, setGovModal] = useState(false)
   const [hasProvider, setHasProvider] = useState<boolean | null>(null)
-
-  const [connectModal, setConnectModal] = useState(false)
-
-  const poolMouseEnter = () => {
-    setPoolModal(true)
-  }
-
-  const poolMouseLeave = () => {
-    setPoolModal(false)
-  }
-
-  const govMouseEnter = () => {
-    setGovModal(true)
-  }
-
-  const govMouseLeave = () => {
-    setGovModal(false)
-  }
-
-  const selectWallet = () => {
-    setConnectModal(true)
-  }
+  console.log("modalIsOpen", modalIsOpen)
 
   const setProviderState = async (wallet: WalletState) => {
     let provider
@@ -76,87 +56,46 @@ const Navbar = () => {
         break
     }
   }
+
   useEffect(() => {
     setProviderState(wallet)
   }, [])
 
   return (
-    <div>
-      <div className={styles.container}>
-        <Link href={"/"}>
-          <div className={styles.logo}>
-            <FontAwesomeIcon icon={faCookie} color="#8B5927" />
-            <h3 className={rubikGemstones.className}>cookieSwap</h3>
-          </div>
-        </Link>
-        <div className={styles.menu}>
-          <Link href={"/swap"}>
-            <div className={styles.wrapper}>
-              <div className={styles.item}>
-                <span>Swap</span>
-              </div>
-            </div>
-          </Link>
-          <div
-            className={styles.wrapper}
-            onMouseEnter={poolMouseEnter}
-            onMouseLeave={poolMouseLeave}
-          >
-            <div className={styles.item}>
-              Pool
-              {poolModal && (
-                <NavModal
-                  list={["single", "pair"]}
-                  link={[`/pool/single`, `/pool/pair`]}
-                  close={() => setPoolModal(false)}
-                />
-              )}
-            </div>
-          </div>
-          <div
-            className={styles.wrapper}
-            onMouseEnter={govMouseEnter}
-            onMouseLeave={govMouseLeave}
-          >
-            <div className={styles.item}>
-              Governance
-              {govModal && (
-                <NavModal
-                  list={[`staking + full vote`, `agenda vote`]}
-                  link={[`/governance/staking`, `/governance/agenda`]}
-                  close={() => setGovModal(false)}
-                />
-              )}
-            </div>
-          </div>
-          <Link href={"/drops"}>
-            <div className={styles.wrapper}>
-              <div className={styles.item}>Drops</div>
-            </div>
-          </Link>
-          <Link href={"/dashboard"}>
-            <div className={styles.wrapper}>
-              <div className={styles.item}>Dashboard</div>
-            </div>
-          </Link>
-        </div>
-        <div>togglebutton</div>
+    <Container>
+      <Link href={"/"}>
+        <Logo>
+          <FontAwesomeIcon icon={faCookie} color="#8B5927" />
+          <h3 className={rubikGemstones.className}>cookieSwap</h3>
+        </Logo>
+      </Link>
+      <NavbarMenu />
+      {account === "none" ? (
         <Button
           width={12}
           height={2}
           onclick={() => setModalIsOpen(true)}
           text={"Connect Wallet"}
         ></Button>
-        <Custom2
-          isOpen={modalIsOpen}
-          onClose={() => setModalIsOpen(false)}
-          width={793}
-          height={491}
-          content={<ConnectWallet />}
-        />
-      </div>
-      {connectModal && <ConnectWalletModal setConnectModal={setConnectModal} />}
-    </div>
+      ) : (
+        <SuccessButton />
+      )}
+      {/* <Button
+        width={12}
+        height={2}
+        onclick={() => setModalIsOpen(true)}
+        text={"Connect Wallet"}
+      ></Button>
+      <SuccessButton /> */}
+      <Custom2
+        isOpen={modalIsOpen}
+        onClose={() => setModalIsOpen(false)}
+        width={793}
+        height={491}
+        content={<ConnectWallet isModal={setModalIsOpen} />}
+      />
+      {/* {connectModal && <ConnectWalletModal setConnectModal={setConnectModal} />} */}
+    </Container>
   )
 }
 

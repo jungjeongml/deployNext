@@ -8,10 +8,10 @@ const ChoiceModal = ({
   open,
   setOpen,
   setText,
-  onClick,
+  onClose,
 }: {
   open: boolean
-  onClick: () => void
+  onClose: () => void
   setText: (value: any) => void
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
@@ -21,7 +21,7 @@ const ChoiceModal = ({
     (e: any) => {
       if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
         console.log("ddd")
-        onClick()
+        onClose()
       }
     },
     [wrapperRef.current]
@@ -34,28 +34,34 @@ const ChoiceModal = ({
     }
   })
 
+  if (!open) return null
+
   return (
     <>
       <ModalWrapper ref={wrapperRef}>
         <ItemWrapper
           text={"Token level change"}
-          setOpen={setOpen}
+          open={open}
+          onClose={onClose}
           setText={setText}
           level={["c", "b"]}
         />
         <ItemWrapper
           text={"Token level change"}
-          setOpen={setOpen}
+          open={open}
+          onClose={onClose}
           setText={setText}
           level={["b", "c"]}
         />
         <ItemWrapper
           text={"Proposal Create"}
-          setOpen={setOpen}
+          open={open}
+          onClose={onClose}
           setText={setText}
           level={[""]}
         />
       </ModalWrapper>
+      <button onClick={onClose}>dddd</button>
     </>
   )
 }

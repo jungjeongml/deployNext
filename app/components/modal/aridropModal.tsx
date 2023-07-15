@@ -1,4 +1,6 @@
-import { useCallback, useEffect, useRef } from "react"
+"use client"
+
+import { useCallback, useEffect, useRef, useState } from "react"
 import {
   AirdropInfo,
   AirdropPeriod,
@@ -15,15 +17,15 @@ import {
   TotalAirdropAmountValue,
 } from "./styled/airdrop.styled"
 import ButtonWrapper from "../../components/button/airdropButtonWrapper"
+import { Contract } from "ethers"
+import { useSelector } from "react-redux"
+import { RootState } from "@/redux/store"
 
-const AirdropModal = ({
-  setIsOpen,
-  index,
-}: {
-  setIsOpen: (value: boolean) => void
-  index: number
-}) => {
+const AirdropModal = ({ setIsOpen, index, contract }: { setIsOpen: (value: boolean) => void; index: number; contract: Contract | null }) => {
   const wrapperRef = useRef<HTMLDivElement>(null)
+
+  const { wallet } = useSelector<RootState, RootState>((state) => state)
+  const LPToken = process.env.NEXT_PUBLIC_ETHLP_ADDRESS
 
   const handler = useCallback(
     (e: any) => {
@@ -41,18 +43,25 @@ const AirdropModal = ({
     }
   })
 
-  console.log(index) //index로 구분해서 데이터 받아오기.
+  const clickHandler = async () => {
+    // console.log(provider, airdropContract)
+    if (contract) {
+      const tx = await contract.doAirdrop(wallet.signer, LPToken, index, {
+        gasLimit: 80000,
+      })
+      const result = await tx.wait()
+    }
+  }
+  // console.log(index) //index로 구분해서 데이터 받아오기.
 
   return (
     <ModalOuter>
       <ModalContainer ref={wrapperRef}>
         <ModalContent>
           <MyAirdropTxT>My Airdrop</MyAirdropTxT>
-          <MyAirdropAmount>
-            <strong>0</strong> oMEGA
-          </MyAirdropAmount>
+          <MyAirdropAmount>Airdrop</MyAirdropAmount>
           <RewardDate>Enable reward Date: 2023.07.09 09:00</RewardDate>
-          <ButtonWrapper />
+          <ButtonWrapper onclick={clickHandler} />
           <AirdropInfo>
             <AirdropPeriod>
               <AirdropPeriodTxT>Airdrop Date</AirdropPeriodTxT>
@@ -60,9 +69,7 @@ const AirdropModal = ({
             </AirdropPeriod>
             <TotalAirdropAmount>
               <TotalAirdropAmountTxT>Total Airdrop</TotalAirdropAmountTxT>
-              <TotalAirdropAmountValue>
-                100,000.0000000 oMEGA
-              </TotalAirdropAmountValue>
+              <TotalAirdropAmountValue>100,000.0000000 oMEGA</TotalAirdropAmountValue>
             </TotalAirdropAmount>
           </AirdropInfo>
         </ModalContent>

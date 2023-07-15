@@ -1,9 +1,15 @@
 "use client"
 import { useRouter } from "next/navigation"
 import RouterButton from "../button/routerButton"
-import styles from "./isLogin.module.css"
 import { useSelector } from "react-redux"
 import { RootState } from "@/redux/store"
+import {
+  Accounts,
+  Balance,
+  MainWrapper,
+  SubWrapper,
+  TxtBox,
+} from "./styled/isLogin.styled"
 
 const IsLogin = () => {
   const router = useRouter()
@@ -14,17 +20,17 @@ const IsLogin = () => {
   )}`
 
   return (
-    <div className={styles.accountContent}>
-      <div className={styles.isLogin}>
-        <div className={styles.accounts}>
+    <MainWrapper>
+      <SubWrapper>
+        <Accounts>
           <h1>logo</h1>
           <span>Connected with {shortAccount}</span>
-        </div>
-        <div className={styles.balance}>
-          <div className={styles.collect}>
+        </Accounts>
+        <Balance>
+          <TxtBox>
             <h2>$0</h2>
             <span>to collect</span>
-          </div>
+          </TxtBox>
           <RouterButton
             width=""
             height="48px"
@@ -40,11 +46,11 @@ const IsLogin = () => {
             letterSpacing="0.03rem"
             onClick={() => router.push("/swap")}
           >
-            Start earning
+            Buy Token
           </RouterButton>
-        </div>
-      </div>
-    </div>
+        </Balance>
+      </SubWrapper>
+    </MainWrapper>
   )
 }
 

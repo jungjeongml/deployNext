@@ -10,7 +10,7 @@
 
 //   const connect = async () => {
 //     try {
-//       if (window.ethereum == null) {
+//       if (!window.ethereum) {
 //         alert("지갑설치하세요")
 //       }
 

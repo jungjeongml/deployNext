@@ -1,50 +1,60 @@
 import Link from "next/link"
-import { Item, Menu, Wrapper } from "../styled/navbar.styled"
+import {
+  Item,
+  ItemList,
+  Menu,
+  SubTitle,
+  Wrapper,
+} from "../styled/navbar.styled"
+import NavItem from "./navItem"
+
+interface SubItemProps {
+  name: string
+  link: string
+}
+
+interface ItemProps {
+  name: string
+  link?: string
+  list?: SubItemProps[]
+}
+
+const NavList: ItemProps[] = [
+  {
+    name: "Swap",
+    link: "/swap",
+  },
+  {
+    name: "Pool",
+    list: [
+      { name: "single", link: "/pool/single" },
+      { name: "pair", link: "/pool/pair" },
+    ],
+  },
+  {
+    name: "Governance",
+    list: [
+      { name: "staking", link: "/governance/staking" },
+      { name: "unstaking", link: "/governance/unstaking"},
+      { name: "agenda", link: "/governance/agenda" }
+    ],
+  },
+  {
+    name: "Drops",
+    link: "/drops",
+  },
+  {
+    name: "Dashboard",
+    link: "/dashboard",
+  },
+]
 
 const NavbarMenu = () => {
   return (
     <Menu>
-      <Link href={"/swap"}>
-        <Wrapper>
-          <Item>
-            <span>Swap</span>
-          </Item>
-        </Wrapper>
-      </Link>
-      <Wrapper>
-        <Item>
-          Pool
-          {/* {poolModal && (
-              <NavModal
-                list={["single", "pair"]}
-                link={[`/pool/single`, `/pool/pair`]}
-                close={() => setPoolModal(false)}
-              />
-            )} */}
-        </Item>
-      </Wrapper>
-      <Wrapper>
-        <Item>
-          Governance
-          {/* {govModal && (
-              <NavModal
-                list={[`staking + full vote`, `agenda vote`]}
-                link={[`/governance/staking`, `/governance/agenda`]}
-                close={() => setGovModal(false)}
-              />
-            )} */}
-        </Item>
-      </Wrapper>
-      <Link href={"/drops"}>
-      <Wrapper>
-        <Item>Drops</Item>
-      </Wrapper>
-      </Link>
-      <Link href={"/dashboard"}>
-        <Wrapper>
-          <Item>Dashboard</Item>
-        </Wrapper>
-      </Link>
+      {NavList.map((item, i) => (
+        <NavItem item={item} key={i} />
+      ))}
     </Menu>
   )
 }

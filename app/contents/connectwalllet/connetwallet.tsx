@@ -4,6 +4,7 @@ import { styled } from "styled-components"
 import { connectToWalletConnect } from "@/app/utiles/walletconnect"
 import { LeftContent } from "./leftcontent"
 import { RightContent } from "./rightcontent"
+import { IWalletIcon } from "@/app/components/walleticon/walleticon"
 
 const WrapST = styled.div`
   position: absolute;
@@ -30,22 +31,27 @@ const WrapST = styled.div`
   }
 `
 
-export const ConnectWallet: React.FC = () => {
-  const walletList = [
+export const ConnectWallet: React.FC<{ isModal: (value: boolean) => void }> = ({
+  isModal,
+}) => {
+  const walletList: IWalletIcon[] = [
     {
       image: "https://assets.pancakeswap.finance/web/wallets/metamask.png",
       name: "Metamask",
       onclick: connectToMetaMask,
+      isModal: isModal,
     },
     {
       image: "https://assets.pancakeswap.finance/web/wallets/trust.png",
       name: "Trust Wallet",
       onclick: connectToTrust,
+      isModal: isModal,
     },
     {
       image: "https://assets.pancakeswap.finance/web/wallets/walletconnect.png",
       name: "WalletConnect",
       onclick: connectToWalletConnect(),
+      isModal: isModal,
     },
   ]
   return (

@@ -7,14 +7,16 @@ import { useCallback, useEffect, useRef } from "react"
 
 const ItemWrapper = ({
   text,
-  setOpen,
+  onClose,
   setText,
   level,
+  open,
 }: {
   text: string
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  onClose: () => void
   setText: (value: string) => void
   level: string[]
+  open: boolean
 }) => {
   const itemRef = useRef<HTMLDivElement>(null)
 
@@ -26,11 +28,12 @@ const ItemWrapper = ({
     } else {
       setText("Token level change B -> C")
     }
-    setOpen(false)
   }
 
+  if (!open) return null
+
   return (
-    <>
+    <div onClick={onClose}>
       <Item ref={itemRef} onClick={clickHander}>
         {text}
         {text === "Token level change" && (
@@ -47,7 +50,7 @@ const ItemWrapper = ({
           </>
         )}
       </Item>
-    </>
+    </div>
   )
 }
 

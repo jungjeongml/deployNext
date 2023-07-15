@@ -73,6 +73,7 @@ export const YesNoBox = styled.div`
   border: 1px solid #e7e3eb;
   border-radius: 16px;
   padding: 30px;
+  cursor: pointer;
 `
 
 export const YesOrNo = styled.h2`
