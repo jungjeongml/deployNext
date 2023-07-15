@@ -55,7 +55,7 @@ const Agenda = () => {
     },
   })
 
-  console.log(data)
+  console.log("data::", data)
   if (isLoading) {
     return <span className={style.loader}></span>
   }
@@ -75,7 +75,7 @@ const Agenda = () => {
       <BoardWrapper>
         <BoardSubject>Proposals</BoardSubject>
         <Board>
-          {/* {data.map(
+          {data.map(
             (item: { subject: string; content: string; id: number; progress: string; created_at: string; end_date: string; isJoin: number }) => (
               <Item
                 key={item.id}
@@ -92,7 +92,7 @@ const Agenda = () => {
                 <IsChecked color={item.isJoin}>{item.isJoin === 0 ? "미참여" : "참여"}</IsChecked>
               </Item>
             )
-          )} */}
+          )}
         </Board>
       </BoardWrapper>
       <HfLayout>
