@@ -29,7 +29,7 @@ export const GET = async (req:NextRequest, res:NextResponse) => {
   try{
     queryString = `SELECT * FROM governance ORDER BY id DESC`  
     const rows = await queryPromise(queryString)
-    return NextResponse.json({rows}, {headers:corsHeaders})
+    return NextResponse.json(rows, {headers:corsHeaders})
   } catch(e){
     console.error(e)
   }
