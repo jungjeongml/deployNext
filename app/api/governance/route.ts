@@ -27,10 +27,9 @@ const queryPromise = (queryString: string) => {
 
 export const GET = async (req:NextRequest, res:NextResponse) => {
   try{
-    // queryString = `SELECT * FROM governance ORDER BY id DESC`  
-    // const rows = await queryPromise(queryString)
-    // console.log('rows::', rows)
-    return NextResponse.json({ddd:"ddd"}, {headers:corsHeaders})
+    queryString = `SELECT * FROM governance ORDER BY id DESC`  
+    const rows = await queryPromise(queryString)
+    return NextResponse.json({rows}, {headers:corsHeaders})
   } catch(e){
     console.error(e)
   }
