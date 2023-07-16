@@ -55,6 +55,7 @@ export interface ButtonCon {
   onclick?: any
   left?: number
   top?: number
+  index?: string
   disabled?:boolean
 }
 
@@ -94,6 +95,7 @@ export interface ISwap {
   onFocusChange?: (event: React.FocusEvent<HTMLInputElement>) => void
   readonly?: boolean
   modals?: "true" | "false"
+  display?:string
 }
 export interface IInput {
   onInputChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
@@ -101,6 +103,7 @@ export interface IInput {
   readonly?: boolean
   defaultValue?: number | string | undefined
   from: boolean
+  display? :string
 }
 
 export interface IsetToken {
@@ -151,5 +154,6 @@ export interface IBasicBtn {
   letterSpacing?: string
   onClick?: any
   text?: string
-  left?:number
+  left?: number
+  disabled?:boolean
 }
