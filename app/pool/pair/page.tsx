@@ -35,7 +35,6 @@ const PairPool = () => {
     let result
     const test = connectedContract.checkPool()
     test.then((result: any) => {
-      console.log(result[2])
       setIsLoading(false)
     })
     switch (tokenName) {

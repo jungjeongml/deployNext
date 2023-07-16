@@ -24,12 +24,7 @@ const WapperST = styled.div`
   cursor: pointer;
 `
 
-export const WalletIcon: React.FC<IWalletIcon> = ({
-  image,
-  name,
-  onclick,
-  isModal,
-}) => {
+export const WalletIcon: React.FC<IWalletIcon> = ({ image, name, onclick, isModal }) => {
   const dispatch = useDispatch()
 
   const clickHandler = async () => {
@@ -38,7 +33,6 @@ export const WalletIcon: React.FC<IWalletIcon> = ({
     dispatch(setSigner(address))
     dispatch(setProvider(provider))
     isModal(false)
-    console.log(wallet, address, provider)
   }
 
   return (

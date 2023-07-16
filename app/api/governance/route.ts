@@ -38,9 +38,7 @@ export const GET = async (req:NextRequest, res:NextResponse) => {
 export const POST = async (req:NextRequest) => {
   try{
     const res = await req.json()
-    console.log(res)
     const query = db.query(`INSERT INTO governance (subject, content) VALUES ("${res.subject}", "${res.content}")`)
-    console.log(query)
     return NextResponse.json(res, {headers:corsHeaders})
   }catch(e){
     console.error(e);

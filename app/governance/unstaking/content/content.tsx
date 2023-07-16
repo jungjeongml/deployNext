@@ -60,7 +60,6 @@ const StakingContent = () => {
     e.preventDefault()
     if (!signerInstance) return
     let parseAmount = ethers.utils.parseEther(submissionAmount.toString())
-    console.log(signerInstance)
     if (submissionLp === "ARBLP") {
       let realPeriod = submissionPeriod
       signerInstance.withDrawStaking(ArbLp, parseAmount, { gasLimit: 508388 })

@@ -11,7 +11,6 @@ import { setAccount } from "@/redux/slice/accountSlice"
 const walletList = [
   {
     click: () => {
-      console.log("1")
       connectMetamask()
     },
     image: "https://assets.pancakeswap.finance/web/wallets/metamask.png",
@@ -66,7 +65,6 @@ const ConnectWalletModal = ({ setConnectModal }: { setConnectModal: any }) => {
   const handler = useCallback(
     (e: any) => {
       if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
-        console.log("ddd")
         setConnectModal(false)
       }
     },
@@ -84,17 +82,13 @@ const ConnectWalletModal = ({ setConnectModal }: { setConnectModal: any }) => {
     switch (index) {
       case (index = 0):
         if (window.ethereum) {
-          console.log("11")
-          console.log(window.ethereum)
           const metaConnect = async () => {
             const account = await window.ethereum.request({
               method: "eth_requestAccounts",
             })
-            console.log("account:", account)
             setAccount(account)
           }
           metaConnect()
-          console.log("22")
         }
         break
       case (index = 1):
@@ -110,9 +104,8 @@ const ConnectWalletModal = ({ setConnectModal }: { setConnectModal: any }) => {
           <div className={styles.textWrapper}>
             <h4 className={styles.subject}>Connect Wallet</h4>
             <div className={styles.textInfo}>
-              Start by connecting with one of the wallets below. Be sure to
-              store your private keys or seed phrase securely. Never share them
-              with anyone.
+              Start by connecting with one of the wallets below. Be sure to store your private keys or seed phrase securely. Never share them with
+              anyone.
             </div>
             <div className={styles.wallets}>
               {walletList.map((wallet, i) => (
@@ -135,10 +128,7 @@ const ConnectWalletModal = ({ setConnectModal }: { setConnectModal: any }) => {
           <div className={styles.noWalletWrapper}>
             <h1>Haven't got a wallet yet?</h1>
             <div>
-              <img
-                src="https://cdn.pancakeswap.com/wallets/wallet_intro.png"
-                className={styles.learnImg}
-              />
+              <img src="https://cdn.pancakeswap.com/wallets/wallet_intro.png" className={styles.learnImg} />
             </div>
             <Link href="" className={styles.link}>
               Learn How to Connect

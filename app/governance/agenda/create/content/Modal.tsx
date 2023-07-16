@@ -43,21 +43,14 @@ export const Modal = ({ open, setOpen, children }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    console.log(`isOpen? :`, open)
-
     const handleClose = (e: MouseEvent) => {
-      if (
-        modalRef.current &&
-        !modalRef.current.contains(e.target as HTMLElement)
-      ) {
-        console.log(123)
+      if (modalRef.current && !modalRef.current.contains(e.target as HTMLElement)) {
         setOpen(false)
       }
     }
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.keyCode === 27) {
-        console.log(456)
         setOpen(false)
       }
     }

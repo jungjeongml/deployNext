@@ -20,7 +20,6 @@ const ChoiceModal = ({
   const handler = useCallback(
     (e: any) => {
       if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
-        console.log("ddd")
         onClose()
       }
     },
@@ -39,27 +38,9 @@ const ChoiceModal = ({
   return (
     <>
       <ModalWrapper ref={wrapperRef}>
-        <ItemWrapper
-          text={"Token level change"}
-          open={open}
-          onClose={onClose}
-          setText={setText}
-          level={["c", "b"]}
-        />
-        <ItemWrapper
-          text={"Token level change"}
-          open={open}
-          onClose={onClose}
-          setText={setText}
-          level={["b", "c"]}
-        />
-        <ItemWrapper
-          text={"Proposal Create"}
-          open={open}
-          onClose={onClose}
-          setText={setText}
-          level={[""]}
-        />
+        <ItemWrapper text={"Token level change"} open={open} onClose={onClose} setText={setText} level={["c", "b"]} />
+        <ItemWrapper text={"Token level change"} open={open} onClose={onClose} setText={setText} level={["b", "c"]} />
+        <ItemWrapper text={"Proposal Create"} open={open} onClose={onClose} setText={setText} level={[""]} />
       </ModalWrapper>
       <button onClick={onClose}>dddd</button>
     </>
