@@ -26,7 +26,6 @@ const queryPromise = (queryString: string) => {
 }  
 
 export const GET = async (req:NextRequest, {params}: {params: {id: number}}) => {
-  console.log("params.id::", params.id)
   try{
     queryString = `SELECT * FROM governance WHERE id=${params.id}`  
     const rows = await queryPromise(queryString)
@@ -37,7 +36,6 @@ export const GET = async (req:NextRequest, {params}: {params: {id: number}}) => 
 }
 
 export const POST = async (req:NextRequest, {params}: {params: {id: number}}) => {
-  console.log("params.id::", params.id)
   try{
     queryString = `SELECT * FROM governance WHERE id=${params.id}`  
     const rows = await queryPromise(queryString)

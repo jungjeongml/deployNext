@@ -77,7 +77,6 @@ export const ButtonDiv: React.FC<ButtonCon> = ({ index, text }) => {
       const arbpoolLv = await factory!.ArbpoolLv()
       const UsdtpoolLv = await factory!.UsdtpoolLv()
       const EthpoolLv = await factory!.EthpoolLv()
-      console.log(arbpoolLv, UsdtpoolLv, EthpoolLv)
 
       if (result.events[0].args[0]) {
         const results = await governance[functionname](LPaddress, intlevel, index, { gasLimit: 800000 })

@@ -32,7 +32,6 @@ export const connectMetamask = () => {
       if (account.length > 0) {
         return
       }
-      console.log(account)
       dispatch(setAccount(account))
       return account
     } catch (e) {
@@ -41,14 +40,5 @@ export const connectMetamask = () => {
   }
 
   handleConnect()
-
-  // useEffect(() => {
-  //   const getProvider = async () => {
-  //     const provider = await detectEthereumProvider({ silent: true })
-  //     console.log(provider)
-  //     setHasProvider(Boolean(provider)) // transform provider to true or false
-  //   }
-  //   getProvider()
-  // }, [])
   return wallet
 }

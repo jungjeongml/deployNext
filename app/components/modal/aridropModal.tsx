@@ -46,14 +46,11 @@ const AirdropModal = ({ setIsOpen, index, contract }: { setIsOpen: (value: boole
   })
 
   const clickHandler = async () => {
-    // console.log(provider, airdropContract)
     setIsLoading(!isLoading)
-    console.log("contract::", contract)
     if (contract) {
       const tx = await contract.doAirdrop(wallet.signer, LPToken, index, {
         gasLimit: 80000,
       })
-      console.log("tx::", tx)
       setIsLoading(!isLoading)
       const result = await tx.wait()
     }

@@ -9,7 +9,6 @@ const DepositModal = ({ setModal }: { setModal: any }) => {
   const handler = useCallback(
     (e: any) => {
       if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
-        console.log("ddd")
         setModal(false)
       }
     },

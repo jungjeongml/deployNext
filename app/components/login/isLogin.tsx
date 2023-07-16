@@ -3,21 +3,12 @@ import { useRouter } from "next/navigation"
 import RouterButton from "../button/routerButton"
 import { useSelector } from "react-redux"
 import { RootState } from "@/redux/store"
-import {
-  Accounts,
-  Balance,
-  MainWrapper,
-  SubWrapper,
-  TxtBox,
-} from "./styled/isLogin.styled"
+import { Accounts, Balance, MainWrapper, SubWrapper, TxtBox } from "./styled/isLogin.styled"
 
 const IsLogin = () => {
   const router = useRouter()
   const account = useSelector((state: RootState) => state.wallet)
-  console.log("account:", account)
-  const shortAccount = `${account.signer.slice(0, 6)}...${account.signer.slice(
-    -4
-  )}`
+  const shortAccount = `${account.signer.slice(0, 6)}...${account.signer.slice(-4)}`
 
   return (
     <MainWrapper>

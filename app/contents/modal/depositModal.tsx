@@ -42,7 +42,6 @@ const DepositModalContent = ({ token, balance }: ISwap) => {
       setIsLoading(false)
     } else if (token === "ARB") {
       const tx = await signerInstance.Sdeposit(Arbadd, realAmount)
-      console.log("dddd")
       setIsLoading(false)
     } else if (token === "USDT") {
       const tx = await signerInstance.Sdeposit(Usdtadd, realAmount)
