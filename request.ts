@@ -2,7 +2,7 @@ import axios from 'axios'
 import config from './config'
 
 const request = axios.create({
-  baseURL: `${config.PT}://${config.HOST}:${config.PORT}`,
+  baseURL: `https://jungml.shop`,
   headers: {
     "Content-Type":"application/json"
   }
