@@ -17,11 +17,11 @@ import { Loader } from "../components/loader/loader.styled"
 type Tokens = "ETH" | "RETH" | "ASD" | "ARB" | "USDT"
 
 const tokenCA = {
-  ARB: process.env.NEXT_PUBLIC_ARBTTOKEN_ADDRESS,
-  USDT: process.env.NEXT_PUBLIC_USDTTOKEN_ADDRESS,
-  ASD: process.env.NEXT_PUBLIC_ASDTOKEN_ADDRESS,
-  ETH: process.env.NEXT_PUBLIC_ETHTOKEN_ADDRESS,
-  RETH: process.env.NEXT_PUBLIC_RETHTOKEN_ADDRESS,
+  ARB: "0x5d60B86902E31ef9E8C785cF2fcF619c29682956",
+  USDT: "0x302087FcAfF4021e7E3E915F022FEB69e425583b",
+  ASD: "0x60940342dc533AcB28a6D7071fF338b32C24d3CF",
+  ETH: "0x0cD8F89728315312722cf0803e8b3F253A761fbb",
+  RETH: "",
   ARBLP: "",
   USDTLP: "",
   ETHLP: "",
@@ -221,6 +221,12 @@ const Swap = () => {
         if (success) setBalanceEthToRETH()
       }
     }
+  }
+
+  if (!provider) {
+    setIsLodaing(true)
+  } else {
+    setIsLodaing(false)
   }
 
   return (
