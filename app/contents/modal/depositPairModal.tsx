@@ -105,6 +105,7 @@ const DepositPairModalContent = ({ token1, balance1, token2, balance2, onClick }
     setEthPer(EthPer)
     setUsdtPer(UsdtPer)
     setArbPer(ArbPer)
+
     if (token1 === "ETH") {
       const fetchData = async () => {
         const {
@@ -152,7 +153,6 @@ const DepositPairModalContent = ({ token1, balance1, token2, balance2, onClick }
 
   useEffect(() => {
     if (!signerInstance) return
-
     if (token1 === "ETH") {
       signerInstance.addLiquid_1(Ethadd, token1Amount, Asdadd, token2Amount)
     } else if (token1 === "ARB") {

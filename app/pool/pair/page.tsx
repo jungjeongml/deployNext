@@ -161,7 +161,6 @@ const PairPool = () => {
   return (
     <div className={styles.container}>
       <PoolIntro />
-      {isLoading && <>loading..</>}
       <div style={{ background: "#faf9fa", padding: "24px 32px", height: "100%" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "20px" }}>
           {isArbTestPassed && <PairList text="ARB" text2="ASD" top={0} radius1={2} radius2={2} amount1={ARBAmount}></PairList>}
