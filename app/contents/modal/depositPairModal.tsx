@@ -15,6 +15,8 @@ import { BigNumber, Contract, ethers } from "ethers"
 import dotenv from "dotenv"
 import { setEthPrice1, setUsdtPrice1, setArbPrice1 } from "@/redux/reducer/tokenPrice"
 import { WithdrawPairModalContent } from "./withDrawModal"
+import { ContractCA } from "@/contractCA"
+
 dotenv.config()
 
 interface IDepositmodal {
@@ -24,10 +26,10 @@ interface IDepositmodal {
   balance2?: number
 }
 
-const Arbadd = "0x5e82193bb6E01a6A6aDda16e02Eb672C0662f21b"
-const Usdtadd = "0x302087FcAfF4021e7E3E915F022FEB69e425583b"
-const Ethadd = "0x0cD8F89728315312722cf0803e8b3F253A761fbb"
-const Asdadd = "0x60940342dc533AcB28a6D7071fF338b32C24d3CF"
+const Arbadd = ContractCA.NEXT_PUBLIC_ARBTTOKEN_ADDRESS
+const Usdtadd = ContractCA.NEXT_PUBLIC_USDTTOKEN_ADDRESS
+const Ethadd = ContractCA.NEXT_PUBLIC_ETHTOKEN_ADDRESS
+const Asdadd = ContractCA.NEXT_PUBLIC_ASDTOKEN_ADDRESS
 
 const DepositPairModalContent = ({ token1, balance1, token2, balance2, onClick }: IPairSwap) => {
   const dispatch = useDispatch()
