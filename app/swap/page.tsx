@@ -56,11 +56,7 @@ const Swap = () => {
   }
 
   useEffect(() => {
-    if (!provider) {
-      setIsLodaing(true)
-    } else {
-      setIsLodaing(false)
-    }
+    console.log("provider.provider:", provider.provider)
     if (provider.provider !== "none" && typeof provider.provider !== "string" && contract.factory === undefined) {
       const factory = useFactory(provider.provider)
       const signer = provider.provider.getSigner()
