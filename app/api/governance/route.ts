@@ -29,7 +29,7 @@ export const GET = async (req:NextRequest, res:NextResponse) => {
   try{
     queryString = `SELECT * FROM governance ORDER BY id DESC`  
     const rows = await queryPromise(queryString)
-    return NextResponse.json(rows)
+    return NextResponse.json(rows, {headers:corsHeaders})
   } catch(e){
     console.error(e)
   }
@@ -39,7 +39,7 @@ export const POST = async (req:NextRequest) => {
   try{
     const res = await req.json()
     const query = db.query(`INSERT INTO governance (subject, content) VALUES ("${res.subject}", "${res.content}")`)
-    return NextResponse.json(res)
+    return NextResponse.json(res, {headers:corsHeaders})
   }catch(e){
     console.error(e);
   }
