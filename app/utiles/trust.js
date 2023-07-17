@@ -60,11 +60,12 @@ export const connectToTrust = async () => {
   if (window.ethereum) {
     try {
       const injectedProvider = await getTrustWalletInjectedProvider()
-
+      console.log("injected::", injectedProvider)
       const account = await injectedProvider.request({
         method: "eth_requestAccounts",
       })
 
+      console.log("account:", account)
       const provider = new ethers.providers.Web3Provider(injectedProvider)
 
       const signer = provider.getSigner()

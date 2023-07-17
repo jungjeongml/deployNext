@@ -75,6 +75,7 @@ const Agenda = () => {
     queryKey: ["governance"],
     queryFn: async () => {
       const res = await request.get("/api/governance")
+      console.log("res.data::", res.data)
       setProposals(res.data)
       await setJoin(res.data)
       return res.data

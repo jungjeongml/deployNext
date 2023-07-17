@@ -1,18 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server'
 const db = require("../../../../common/config/db")
 
-// const corsHeaders = {
-//   "Access-Control-Allow-Origin": "*",
-//   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-//   "Access-Control-Allow-Headers": "Content-Type, Authorization",
-// };
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
+};
 
 
 let queryString
 
-// export async function OPTIONS(req: NextRequest) {
-//   return NextResponse.json({}, { headers: corsHeaders });
-// }
+export async function OPTIONS(req: NextRequest) {
+  return NextResponse.json({}, { headers: corsHeaders });
+}
 
 const queryPromise = (queryString: string) => {
 	return new Promise((resolve, reject) => {  
