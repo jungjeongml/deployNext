@@ -66,20 +66,11 @@ const Navbar = () => {
       <Link href={"/"}>
         <Logo>
           <FontAwesomeIcon icon={faCookie} color="#8B5927" />
-          <h3 className={rubikGemstones.className}>cookieSwap</h3>
+          <h3 className={rubikGemstones.className}>Solar DeFI</h3>
         </Logo>
       </Link>
       <NavbarMenu />
-      {account === "none" ? (
-        <Button
-          width={12}
-          height={2}
-          onclick={() => setModalIsOpen(true)}
-          text={"Connect Wallet"}
-        ></Button>
-      ) : (
-        <SuccessButton />
-      )}
+      {account === "none" ? <Button width={12} height={2} onclick={() => setModalIsOpen(true)} text={"Connect Wallet"}></Button> : <SuccessButton />}
       {/* <Button
         width={12}
         height={2}
