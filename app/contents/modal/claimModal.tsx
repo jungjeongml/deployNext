@@ -9,14 +9,15 @@ import { Contract, ethers } from "ethers"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
+import { ContractCA } from "@/contractCA"
 
-const Arbadd = "0x5e82193bb6E01a6A6aDda16e02Eb672C0662f21b"
-const Usdtadd = "0x302087FcAfF4021e7E3E915F022FEB69e425583b"
-const Ethadd = "0x0cD8F89728315312722cf0803e8b3F253A761fbb"
-const Asdadd = "0x60940342dc533AcB28a6D7071fF338b32C24d3CF"
-const ArbLp = "0x5d60B86902E31ef9E8C785cF2fcF619c29682956"
-const UsdtLp = "0xE7b77522bC283000C1410b35B5347D5d2fd038B4"
-const EthLp = "0x655e54966E187b5D2c4cc0701eE38d6164675f6E"
+const Arbadd = ContractCA.NEXT_PUBLIC_ARBTTOKEN_ADDRESS
+const Usdtadd = ContractCA.NEXT_PUBLIC_USDTTOKEN_ADDRESS
+const Ethadd = ContractCA.NEXT_PUBLIC_ETHTOKEN_ADDRESS
+const Asdadd = ContractCA.NEXT_PUBLIC_ASDTOKEN_ADDRESS
+const ArbLp = ContractCA.NEXT_PUBLIC_ARBLP_ADDRESS
+const UsdtLp = ContractCA.NEXT_PUBLIC_USDTLP_ADDRESS
+const EthLp = ContractCA.NEXT_PUBLIC_ETHLP_ADDRESS
 
 interface IClaimModalContent {
   token: Token

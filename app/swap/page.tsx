@@ -13,15 +13,16 @@ import { useFactory } from "../hooks/usefactory"
 import { ethers } from "ethers"
 import { setFromToken, setToToken } from "@/redux/reducer/selecttoken"
 import { Loader } from "../components/loader/loader.styled"
+import { ContractCA } from "@/contractCA"
 
 type Tokens = "ETH" | "RETH" | "ASD" | "ARB" | "USDT"
 
 const tokenCA = {
-  ARB: "0x5e82193bb6E01a6A6aDda16e02Eb672C0662f21b",
-  USDT: "0x302087FcAfF4021e7E3E915F022FEB69e425583b",
-  ASD: "0x60940342dc533AcB28a6D7071fF338b32C24d3CF",
-  ETH: "0x655e54966E187b5D2c4cc0701eE38d6164675f6E",
-  RETH: process.env.NEXT_PUBLIC_RETHTOKEN_ADDRESS,
+  ARB: ContractCA.NEXT_PUBLIC_ARBTTOKEN_ADDRESS,
+  USDT: ContractCA.NEXT_PUBLIC_USDTTOKEN_ADDRESS,
+  ASD: ContractCA.NEXT_PUBLIC_ASDTOKEN_ADDRESS,
+  ETH: ContractCA.NEXT_PUBLIC_ETHTOKEN_ADDRESS,
+  RETH: "",
   ARBLP: "",
   USDTLP: "",
   ETHLP: "",
@@ -227,7 +228,6 @@ const Swap = () => {
   return (
     <>
       <div className={styles.container}>
-        {isLoading && <Loader />}
         <div className={styles.swapWrapper}>
           <div className={styles.header}>
             <div className={styles.info}>

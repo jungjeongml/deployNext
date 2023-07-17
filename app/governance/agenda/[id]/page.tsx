@@ -12,6 +12,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/redux/store"
 import { BigNumber, BytesLike, ethers } from "ethers"
 import { ButtonDiv } from "@/app/contents/govornor/buttondiv"
+import { ContractCA } from "@/contractCA"
 
 type PageParams = {
   id: string
@@ -26,7 +27,7 @@ const ViewProposal = ({ params }: { params: PageParams }) => {
   const [proposal, setProposal] = useState<any>("")
   const [date, setDate] = useState<string>("0")
 
-  const owner = "0xbb2cb9aa911be2adb977d97ba4f9ac9526e7364a"
+  const owner = ContractCA.NEXT_PUBLIC_OWNER_ADDRESS
 
   const {
     wallet: { signer },
