@@ -29,7 +29,7 @@ export const GET = async (req:NextRequest, {params}: {params: {id: number}}) => 
   try{
     queryString = `SELECT * FROM governance WHERE id=${params.id}`  
     const rows = await queryPromise(queryString)
-    return NextResponse.json(rows)
+    return NextResponse.json(rows, {headers:corsHeaders})
   } catch(e){
     console.error(e)
   }
@@ -39,7 +39,7 @@ export const POST = async (req:NextRequest, {params}: {params: {id: number}}) =>
   try{
     queryString = `SELECT * FROM governance WHERE id=${params.id}`  
     const rows = await queryPromise(queryString)
-    return NextResponse.json(rows)
+    return NextResponse.json(rows, {headers:corsHeaders})
   } catch(e){
     console.error(e)
   }
