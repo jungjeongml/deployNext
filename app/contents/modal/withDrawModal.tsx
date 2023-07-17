@@ -11,6 +11,7 @@ import { useState, useEffect } from "react"
 import { Contract, ethers } from "ethers"
 import { useRouter } from "next/navigation"
 import { ContractCA } from "@/contractCA"
+import { Loader } from "@/app/components/loader/loader.styled"
 
 interface IWithdrawPairModalContent {
   token: Token
@@ -37,6 +38,7 @@ export const WithdrawPairModalContent = ({ token }: IWithdrawPairModalContent) =
   const [signerInstance, setsignerInstance] = useState<Contract | null>(null)
   const [withDraw1, setwithDraw1] = useState(0)
   const [withDraw2, setwithDraw2] = useState(0)
+  const [isLoading, setIsLoading] = useState(false)
 
   const userAmount = async (signerInstance: Contract, differLp: string, differTokenAddress: string, asdTokenAddress: string) => {
     let tx1 = await signerInstance.checkToken(differLp, { gasLimit: 800000 })
@@ -159,6 +161,7 @@ export const WithdrawPairModalContent = ({ token }: IWithdrawPairModalContent) =
   const submitButton = (e: any) => {
     e.preventDefault()
     const fetchData = async () => {
+      setIsLoading(!isLoading)
       if (token === "ETH") {
         const fetchData2 = async () => {
           subLiquid(signerInstance!, EthLp!, differLpamount!, Asdadd!)
@@ -192,6 +195,7 @@ export const WithdrawPairModalContent = ({ token }: IWithdrawPairModalContent) =
           <SwapBox token={`${token}LP` as Token} balance={differLpValue} from={false} onInputChange={handleInputChange1}></SwapBox>
           <SwapBox token={token as Token} balance={differValue} top={1.2} from={false} defaultValue={withDraw1} readonly={true}></SwapBox>
           <SwapBox token={"ASD"} balance={asdValue} top={1.2} from={false} defaultValue={withDraw2} readonly={true}></SwapBox>
+          {isLoading && <Loader />}
           <Button width={18} height={2} top={2} text={"WithDraw"} onclick={submitButton}></Button>
         </ModalcontentST>
       </ModalWrapST>
