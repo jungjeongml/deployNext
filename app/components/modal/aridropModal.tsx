@@ -27,7 +27,7 @@ const AirdropModal = ({ setIsOpen, index, contract }: { setIsOpen: (value: boole
   const [isLoading, setIsLoading] = useState(false)
 
   const { wallet } = useSelector<RootState, RootState>((state) => state)
-  const LPToken = process.env.NEXT_PUBLIC_ETHLP_ADDRESS
+  const LPToken = "0x655e54966E187b5D2c4cc0701eE38d6164675f6E"
 
   const handler = useCallback(
     (e: any) => {

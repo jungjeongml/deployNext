@@ -15,10 +15,10 @@ import { useFactory } from "@/app/hooks/usefactory"
 import { WithdrawsingleModalContent } from "./withDrawsinglModal"
 import { Loader } from "@/app/components/loader/loader.styled"
 
-const Arbadd = process.env.NEXT_PUBLIC_ARBTTOKEN_ADDRESS
-const Usdtadd = process.env.NEXT_PUBLIC_USDTTOKEN_ADDRESS
-const Ethadd = process.env.NEXT_PUBLIC_ETHTOKEN_ADDRESS
-const Asdadd = process.env.NEXT_PUBLIC_ASDTOKEN_ADDRESS
+const Arbadd = "0x5e82193bb6E01a6A6aDda16e02Eb672C0662f21b"
+const Usdtadd = "0x302087FcAfF4021e7E3E915F022FEB69e425583b"
+const Ethadd = "0x0cD8F89728315312722cf0803e8b3F253A761fbb"
+const Asdadd = "0x60940342dc533AcB28a6D7071fF338b32C24d3CF"
 
 const DepositModalContent = ({ token, balance }: ISwap) => {
   const { provider, wallet, tokenPrice } = useSelector<RootState, RootState>((state) => state)

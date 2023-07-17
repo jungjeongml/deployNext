@@ -32,7 +32,7 @@ const DropBody = () => {
   const [airdropContract, setAirdropContract] = useState<Contract | null>(null)
 
   useEffect(() => {
-    const airdropCA = process.env.NEXT_PUBLIC_AIRDROP_ADDRESS
+    const airdropCA = "0xE887D4043088669a8931efEC721c1ad2DE70D185"
     if (typeof provider.provider !== "string" && airdropCA) {
       const contract = new ethers.Contract(airdropCA, airdrop.abi, provider.provider)
       const instance = contract.connect(provider.provider.getSigner())
