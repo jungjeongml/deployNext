@@ -219,7 +219,6 @@ const Swap = () => {
         setIsLodaing(!isLoading)
         if (inputValueFrom <= 0) return alert("올바른 숫자를 입력해주세요")
         const inputString = inputValueFrom.toString()
-
         const amount = ethers.utils.parseEther(inputString)
         const tx = await contract.factory!.refundToken(tokenCA["ETH"], amount, {
           gasLimit: 800000,
